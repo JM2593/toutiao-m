@@ -3,6 +3,8 @@
 // 不包含默认导出的东西
 
 export * from '@/api/user'
+export * from '@/api/channel'
+export * from '@/api/news'
 
 // 引入默认导出的东西，重新起名后按需导出，default(不常用)
 // export { default as getUser } from './user'

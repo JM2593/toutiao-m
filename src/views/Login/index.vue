@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mobileRules, codeRules } from './rule'
+import { mobileRules, codeRules } from '@/views/Login/rule'
 import { login, getMobileCode } from '@/api'
 export default {
   data() {
