@@ -2,7 +2,9 @@
   <div>
     <!-- 头部 -->
     <header>
-      <div v-if="isLogin">登陆的盒子</div>
+      <div v-if="isLogin">
+        登陆的盒子 <button @click="$router.push('/user')">编辑资料</button>
+      </div>
       <div v-else>未登录</div>
     </header>
 
