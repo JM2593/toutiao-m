@@ -18,7 +18,11 @@
     <!-- <search-history></search-history>
     <search-result></search-result>
     <search-suggestion></search-suggestion> -->
-    <component :keywords="keywords" :is="componentName"></component>
+    <component
+      :searchResult="searchResultList"
+      :keywords="keywords"
+      :is="componentName"
+    ></component>
   </div>
 </template>
 
@@ -31,7 +35,10 @@ export default {
   data() {
     return {
       keywords: '',
-      isShowSearchResult: false
+      isShowSearchResult: false,
+      SearchHistory: this.$store.state.searchHistory,
+      searchResultList: [],
+      page: 1
     }
   },
   computed: {
@@ -47,7 +54,10 @@ export default {
     }
   },
   methods: {
-    onSearch() {
+    async onSearch() {
+      this.SearchHistory.unshift(this.keywords)
+      this.SearchHistory = [...new Set(this.SearchHistory)]
+      this.$store.commit('SET_HISTORY', this.SearchHistory)
       this.isShowSearchResult = true
     },
     onSearchFocus() {

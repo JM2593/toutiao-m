@@ -53,3 +53,59 @@ export const uploadAvatar = (file) => {
     data: fm
   })
 }
+
+export const uploadName = (name) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data: {
+      name
+    }
+  })
+}
+
+export const uploadGender = (gender) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data: {
+      gender
+    }
+  })
+}
+
+export const uploadBirthday = (birthday) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data: {
+      birthday
+    }
+  })
+}
+
+/**
+ * 关注用户
+ * @param {String} target 关注用户的id
+ * @returns Promise
+ */
+export const followedAPI = (target) => {
+  return request({
+    url: '/v1_0/user/followings',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+}
+/**
+ * 取消关注
+ * @param {String} target 目标用户的id
+ * @returns Promise
+ */
+export const unfollowAPI = (target) => {
+  return request({
+    url: `/v1_0/user/followings/${target}`,
+    method: 'DELETE'
+  })
+}

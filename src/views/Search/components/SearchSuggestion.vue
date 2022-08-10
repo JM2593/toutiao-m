@@ -4,6 +4,7 @@
       v-for="(item, index) in getHighLightSuggestions()"
       :key="index"
       icon="search"
+      @click="$parent.keywords = suggestions[index]"
     >
       <template #title>
         <span v-html="item"> </span>

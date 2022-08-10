@@ -1,21 +1,29 @@
 <template>
   <!-- 无图片 -->
-  <van-cell
-    :title="articleInfo.title"
-    :label="label"
-    v-if="articleInfo.cover.type === 0"
-  />
+  <van-cell :title="articleInfo.title" v-if="articleInfo.cover.type === 0">
+    <template #label>
+      <p>
+        {{ articleInfo.aut_name }} {{ articleInfo.comm_count }}评论
+        {{ articleInfo.pubdate | formatDate }}
+      </p>
+    </template>
+  </van-cell>
   <!-- 单张图片 -->
   <van-cell
     :title="articleInfo.title"
-    :label="label"
     v-else-if="articleInfo.cover.type === 1"
   >
     <van-image width="100" height="100" :src="articleInfo.cover.images[0]" />
+    <template #label
+      ><p>
+        {{ articleInfo.aut_name }} {{ articleInfo.comm_count }}评论
+        {{ articleInfo.pubdate | formatDate }}
+      </p>
+    </template>
   </van-cell>
 
   <!-- 三张图片 -->
-  <van-cell :title="articleInfo.title" :label="label" v-else>
+  <van-cell :title="articleInfo.title"  v-else>
     <template #label>
       <van-image
         width="100"
@@ -24,7 +32,10 @@
         :key="index"
         :src="item"
       />
-      <p>{{ label }}</p>
+      <p>
+        {{ articleInfo.aut_name }} {{ articleInfo.comm_count }}评论
+        {{ articleInfo.pubdate | formatDate }}
+      </p>
     </template>
   </van-cell>
 </template>
@@ -35,12 +46,6 @@ export default {
     articleInfo: {
       type: Object,
       default: () => ({})
-    }
-  },
-  computed: {
-    label() {
-      const art = this.articleInfo
-      return `${art.aut_name} ${art.comm_count}评论 ${art.pubdate}`
     }
   }
 }
